@@ -35,15 +35,20 @@
                      (hic/html [:a {:href " http://www.performancecentre.com"} "click here"])
                      " to redeem your prize.")]))
 
+;;Takes the value of the last quote and removes it from a set
+;;Then converts that set back into list so we can grab it with random integer. Ensures a new quote is reloaded "new" meaning not the same one
+
 (defn random-quote []
-  (get my-quotes (rand-int (count my-quotes))))
+  (let [reduced-set (vec (disj (set my-quotes) @last-quote))]
+    (get reduced-set (rand-int (count reduced-set)))))
+
 
 ;;This helps generate our view
 (defn get-quote-html [q]
   (let [{:keys [author topic content]} q
         html (hic/html [:h2 (str "Author: " author)]
-                  [:h3 (str "Topic: " topic)]
-                  [:p content])]
+                       [:h3 (str "Topic: " topic)]
+                       [:p (str "\"" content "\"")])]
     (reset! last-quote q)
     html))
 
