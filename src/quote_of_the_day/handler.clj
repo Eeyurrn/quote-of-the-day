@@ -1,6 +1,7 @@
 (ns quote-of-the-day.handler
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
+            [hiccup.core :as hic]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 (def count (atom 0))
 
