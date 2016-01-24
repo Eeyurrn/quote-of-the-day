@@ -3,7 +3,9 @@
             [compojure.route :as route]
             [hiccup.core :as hic]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+
 (def hits (atom 0)) ;;keep track of the visits that we recieve the only persistent state we have
+
 ;;keep track of the last quote's content
 (def last-quote (atom nil))
 
@@ -47,11 +49,12 @@
 ;;This helps generate our view
 (defn get-quote-html [q]
   (let [{:keys [author topic content]} q
-        html (hic/html [:h2 (str "Author: " author)]
-                       [:h3 (str "Topic: " topic)]
+        html (hic/html [:h2 (str "Author: " author)]        ;;generates the Header
+                       [:h3 (str "Topic: " topic)]          ;;Topic
                        [:p (str "\"" content "\"")])]
-    (reset! last-quote q)
-    html))
+                         ;;and the quote itself
+    (reset! last-quote q)                                   ;;set the last quote
+    html))                                                  ;;and return the html
 
 ;;The controller layer
 (defn get-quote [hit]
@@ -61,8 +64,8 @@
 
 ;;Routing layer which processes our request
 (defroutes app-routes
-           (GET "/" [] (swap! hits inc)
-                       (get-quote @hits))
+           (GET "/" [] (swap! hits inc)                     ;;this function applies an increment to our hit counter
+                       (get-quote @hits))                   ;;the @hits is a short hand for dereferencing the "hits" atom
            (route/not-found "Not Found"))
 
 (def app
