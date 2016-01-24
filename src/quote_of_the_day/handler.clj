@@ -16,10 +16,18 @@
    {:author  "Albert Einstein"
     :topic   "Love"
     :content "Gravitation cannot be held responsible for people falling in love."}
-   {:author "Stephen King"
-    :topic "Philosophy"
-    :content "Monsters are real, and ghosts are real too. They live inside us, and sometimes, they win."
-    }
+   {:author  "Stephen King"
+    :topic   "Philosophy"
+    :content "Monsters are real, and ghosts are real too. They live inside us, and sometimes, they win."}
+   {:author  "Winston Churchill"
+    :topic   "Politics"
+    :content "History will be kind to me for I intend to write it."}
+   {:author  "Al Gore"
+    :topic   "Politics"
+    :content "I invented the internet"}
+   {:author  "Stephen King"
+    :topic   "Psychology"
+    :content "The scariest moment is always just before you start."}
    ])
 ;; Our winner html
 (defn get-winner []
