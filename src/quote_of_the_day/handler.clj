@@ -21,11 +21,36 @@
     :content "Monsters are real, and ghosts are real too. They live inside us, and sometimes, they win."
     }
    ])
+;; Our winner html
+(defn get-winner []
+  (hic/html [:p (str "Congratulations! You have just won $1,000,000. Please click "
+                     (hic/html [:a {:href " http://www.performancecentre.com"} "here"])
+                     " to redeem your prize.")]))
 
+(defn random-quote []
+  (get my-quotes (rand-int (count my-quotes))))
+
+;;This helps generate our view
+(defn get-quote-html [q]
+  (let [{:keys [author topic content]} q
+        html (hic/html [:h2 (str "Author: " author)]
+                  [:h3 (str "Topic: " topic)]
+                  [:p content])]
+    (reset! last-quote q)
+    html))
+
+
+;;The controller layer
+(defn get-quote [hit]
+  (if (= (mod hit 7) 0)                                     ;;checks if we have a winner
+    (get-winner)
+    (get-quote-html (random-quote))))
+
+;;Routing layer which processes our request
 (defroutes app-routes
-  (GET "/" [] (swap! count inc)
-       (str "Hello World " @count))
-  (route/not-found "Not Found"))
+           (GET "/" [] (swap! hits inc)
+                       (get-quote @hits))
+           (route/not-found "Not Found"))
 
 (def app
   (wrap-defaults app-routes site-defaults))
