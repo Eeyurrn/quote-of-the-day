@@ -3,7 +3,9 @@
             [compojure.route :as route]
             [hiccup.core :as hic]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])) '(def hits (atom 0)) ;;keep track of the visits that we recieve the only persistent state we have
-(def last-quote (atom nil))                                 ;;keep track of the last quote's content
+;;keep track of the last quote's content
+(def last-quote (atom nil))
+
 ;;The model or "The database"
 (def my-quotes
   [{:author  "Friedrich Nietzsche"
@@ -37,11 +39,9 @@
 
 ;;Takes the value of the last quote and removes it from a set
 ;;Then converts that set back into list so we can grab it with random integer. Ensures a new quote is reloaded "new" meaning not the same one
-
 (defn random-quote []
   (let [reduced-set (vec (disj (set my-quotes) @last-quote))]
     (get reduced-set (rand-int (count reduced-set)))))
-
 
 ;;This helps generate our view
 (defn get-quote-html [q]
@@ -51,7 +51,6 @@
                        [:p (str "\"" content "\"")])]
     (reset! last-quote q)
     html))
-
 
 ;;The controller layer
 (defn get-quote [hit]
