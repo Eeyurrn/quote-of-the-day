@@ -1,19 +1,26 @@
 # quote-of-the-day
 
-FIXME
+App which generates a quote of the day and tells every 7th visitor that they have won with a link to www.performancecentre.com
 
 ## Prerequisites
 
+Java 1.6 or higher must be installed [Download Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
 You will need [Leiningen][] 2.0.0 or above installed.
 
+
 [leiningen]: https://github.com/technomancy/leiningen
+
+There are instructions in that link, please see the **Installation** section for instructions on how to install the Leiningen build tool.
+
+*Note: Clojure will be installed along with Leiningen*
 
 ## Running
 
 To start a web server for the application, run:
 
-    lein ring server
+    lein ring server-headless
 
-## License
+The application can be accessed from `http://127.0.0.1:3000/`
 
-Copyright © 2016 FIXME
+
