@@ -3,7 +3,7 @@
             [compojure.route :as route]
             [hiccup.core :as hic]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
-(def count (atom 0))
+(def hits (atom 0))                                         ;;keep track of the visits that we recieve the only persistent state we have
 
 (defroutes app-routes
   (GET "/" [] (swap! count inc)
