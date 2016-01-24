@@ -31,8 +31,8 @@
    ])
 ;; Our winner html
 (defn get-winner []
-  (hic/html [:p (str "Congratulations! You have just won $1,000,000. Please click "
-                     (hic/html [:a {:href " http://www.performancecentre.com"} "here"])
+  (hic/html [:p (str "Congratulations! You have just won $1,000,000. Please "
+                     (hic/html [:a {:href " http://www.performancecentre.com"} "click here"])
                      " to redeem your prize.")]))
 
 (defn random-quote []
