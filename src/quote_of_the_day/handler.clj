@@ -2,9 +2,8 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [hiccup.core :as hic]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
-(def hits (atom 0))                                         ;;keep track of the visits that we recieve the only persistent state we have
-(def last-quote (atom nil))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])) '(def hits (atom 0)) ;;keep track of the visits that we recieve the only persistent state we have
+(def last-quote (atom nil))                                 ;;keep track of the last quote's content
 ;;The model or "The database"
 (def my-quotes
   [{:author  "Friedrich Nietzsche"
