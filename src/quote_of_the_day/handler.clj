@@ -2,7 +2,8 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [hiccup.core :as hic]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])) '(def hits (atom 0)) ;;keep track of the visits that we recieve the only persistent state we have
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+(def hits (atom 0)) ;;keep track of the visits that we recieve the only persistent state we have
 ;;keep track of the last quote's content
 (def last-quote (atom nil))
 
