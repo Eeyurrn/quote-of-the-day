@@ -35,4 +35,7 @@ To start a web server for the application, run:
 
 The application can be accessed from `http://127.0.0.1:3000/`
 
+Source code
+-------------
 
+Go to `src/quote-of-the-day/handler.clj` to view the server source
